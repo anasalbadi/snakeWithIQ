@@ -25,4 +25,4 @@ A snake game that uses AI to find food. Imagine if other animales did the same t
 3. Pytorch: A machine learning framework that helps create neural networks
 4. Pygame: Python module designed for video games
 
-# test
+# Found Issue with using system variables and trying to solve that at the moment
