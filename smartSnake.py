@@ -80,3 +80,13 @@ def reset(self):
     self._place_food()
     self.frame_iteration = 0
 
+
+#####################################################
+# Randomizing fruit placement
+def _place_food(self):
+    x = random.randint(0, (self.w - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
+    y = random.randint(0, (self.h - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
+    self.food = Point(x, y)
+    if self.food in self.snake:
+        self._place_food()
+        
