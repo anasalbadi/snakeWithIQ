@@ -32,6 +32,7 @@ class Direction(Enum):
 Point = namedtuple('Point', 'x, y')
 
 #####################################################
+# Define colors & block size & snake speed
 
 WHITE = (255, 255, 255)
 RED =   (200, 0, 0)
@@ -43,15 +44,19 @@ BLOCK_SIZE = 20
 SPEED = 80 # Adjust the speed of teh snake to your liking
 
 #####################################################
+# Method to update game screen: snake, food, score
+
 def _update_ui(self):
     self.display.fill(BLACK)
     for point in self.snake:
+        # draws a rectangle for each snake segment in BLUE1
         pygame.draw.rect(self.display, BLUE1, pygame.Rect(point.x, point.y, BLOCK_SIZE, BLOCK_SIZE))
+        # Draws a smaller rectangle inside each segment in BLUE2 - creating a layering effect
         pygame.draw.rect(self.display, BLUE2, pygame.Rect(point.x + 4, point.y + 4, 12, 12))
-
     pygame.draw.rect(self.display, RED, pygame.Rect(self.food.x, self.food.y, BLOCK_SIZE, BLOCK_SIZE))
 
     text = font.render("Score: " + str(self.score), True, WHITE)
     self.display.blit(text, [0, 0])
     pygame.display.flip()
 
+#####################################################
