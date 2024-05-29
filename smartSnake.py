@@ -102,4 +102,30 @@ def is_collision (self, point=None):
     return False
 
 #####################################################
+# The State/Actual Playing Process
+# Implementing reward values and basic game rules
+def play_step(self, action):
+    self.frame_iteration +=1
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            quit()
+        self.move(action)
+        self.snake.insert(0, self.head)
+        reward = 0
+        game_over = False
+        if self.is_collision() or self.frame_iteration > 100 * len(self.snake):
+            game_over = True
+            reward = -10
+            return reward, game_over, self.score
+        if self.head == self.food:
+            self.score += 1
+            reward = 10 
+            self._place_food()
+        else:
+            self.snake.pop() # food not eaten, remove tail segment
+        self._update_ui()
+        self.clock.tick(SPEED)
+        return reward, game_over, self.score
+
 
