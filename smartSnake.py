@@ -110,7 +110,7 @@ def play_step(self, action):
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
-        self.move(action)
+        self._move(action)
         self.snake.insert(0, self.head)
         reward = 0
         game_over = False
@@ -128,4 +128,33 @@ def play_step(self, action):
         self.clock.tick(SPEED)
         return reward, game_over, self.score
 
+#####################################################
+# Setting up directions
+def _move(self, action):
+    clock_wise = [Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.UP]
+    idx = clock_wise.index(self.direction)
+    if np.array_equal(action, [1, 0, 0]): # straight
+        new_dir = clock_wise[idx]
+    elif np.array_equal(action, [0, 1, 0]): # right turn
+        next_idx = (idx + 1) % 4
+        new_dir = clock_wise[next_idx]
+    else: # other situation is [0, 0, 1]
+        next_idx = (idx - 1) % 4
+        new_dir = clock_wise[next_idx]
+    self.direction = new_dir
+
+    x = self.head.x
+    y = self.head.y
+    if self.direction == Direction.RIGHT:
+        x += BLOCK_SIZE
+    elif self.direction == Direction.LEFT:
+        x -= BLOCK_SIZE
+    elif self.direction == Direction.DOWN:
+        y += BLOCK_SIZE
+    elif self.direction == Direction.UP:
+        y -= BLOCK_SIZE
+    
+    self.head = Point(x, y)
+
+    
 
