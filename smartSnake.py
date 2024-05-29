@@ -90,3 +90,16 @@ def _place_food(self):
     if self.food in self.snake:
         self._place_food()
         
+#####################################################
+# Checking Collisions - aka when snake dies
+def is_collision (self, point=None):
+    if point is None: # point is snake's head
+        point = self.head
+    if point.x > self.w - BLOCK_SIZE or point.x < 0 or point.y > self.h - BLOCK_SIZE or point.y < 0:
+        return True # if the snake hits the side
+    if point in self.snake[1:]:
+        return True # if snake hits itself
+    return False
+
+#####################################################
+
