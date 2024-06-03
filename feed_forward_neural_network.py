@@ -8,7 +8,7 @@ import torch.nn.functional as F
 import os
 
 #####################################################
-# Building the Neural Network 
+# Building the Neural Network - Look at readme for more info
 class Linear_QNet(nn.Module):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)

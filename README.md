@@ -65,3 +65,6 @@ A snake game that uses AI to find food. Imagine if other animales did the same t
 ### For this specific project, the Belleman and loss function equations can be simplified down to
 
 ![alt text](simplified_belleman_and_loss.png)
+
+### Simple feed-forward neural network with an input later of 11 nodes, a single hidden layer of 256 nodes, and an output lataer of 3 nodes, representing the 3 possible actions the agent can take (right, left, straight)
+
